@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.title }} - 程序员的百宝箱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta itemprop="name" name="name" content="{{ article.title}}" />
+    <meta itemprop="image" name="image" content="http://chrunleexun.com/css/img/logo-en.png" />
+    <meta name="description" itemprop="description" content="{{article.title}},程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun" />
+    <meta name="keywords" content="{{article.title}},程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun" />
+    {% include '../common/css.html' %}
+    <link media="all" type="text/css" rel="stylesheet" href="/css/article.css"  />
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <div class="container">
+        <div class="row">
+            <input type="hidden" name="appid" id="appid" value="{{ article.id }}">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <p><a href="/article/list">笔记 </a>&gt; <a href="/article/list?t={{ article.type }}">{{ article.type}}</a></p>
+                <h4>{{ article.title }}</h4>
+                <p class="help-block">作者:{{ article.author }} &nbsp;&nbsp;&nbsp;&nbsp;发布时间:{{ article.createtime }}</p>
+                <div style="height:1px;border-top:1px solid #ccc;margin-top:20px;margin-bottom:20px;padding:0px 20px;"></div>
+                <div class="articlecontent">{{ article.content }} </div>
+                {% include '../common/comment.html' %}
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <p class="help-block">如果还不错，就请小小的分享下呗...</p>
+                <div class="bdsharebuttonbox">
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a href="#" class="bds_more" data-cmd="more"></a>
+                    <a class="bds_count" data-cmd="count"></a>
+                </div>
+                <script>
+                    window._bd_share_config={
+                        "common":{
+                            "bdSnsKey":{},
+                            "bdText":"",
+                            "bdMini":"2",
+                            "bdMiniList":false,
+                            "bdPic":"",
+                            "bdStyle":"0",
+                            "bdSize":"32"
+                        },
+                        "share":{}
+                    };
+                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                </script>
+                <div class="recommand">
+                    <h4>推荐笔记</h4>
+                    <ul class="rightlist">
+                        {% for entity in readlist %}
+                        <li><a href="/article/view/{{ entity.id }}.html">{{ entity.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="articletype">
+                    <h4>笔记分类</h4>
+                    <ul class="rightlist">
+                        {% for type in typelist %}
+                        <li><a href="/article/list?t={{type.type}}">{{ type.type }}&nbsp;( {{ type.num }} )</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="articletime">
+                    <h4>笔记归档</h4>
+                    <ul class="rightlist">
+                        {% for entity in datelist %}
+                        <li><a href="/article/list?d={{entity.date}}">{{ entity.date }}&nbsp;( {{ entity.num }} )</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include '../common/footer.html' %}
+</body>
+</html>

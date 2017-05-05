@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>程序员的百宝箱</title>
+    <meta name="keywords" itemprop="name" content="程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun">
+    <meta name="description" itemprop="description" content="程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun">
+    {% include '../common/css.html' %}
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <div class="container">
+        <div class="collect-container">
+            <span class="collect-title"><i class="fa fa-bullhorn"></i>&nbsp;弹窗类</span>
+            <div class="collect-show-content">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 collect-block" >
+                    <p><b>jquery</b></p>
+                    <p>
+                        简介：这是一款基于选择器的DOM操作框架，轻量级。
+                    </p>
+                    <p>
+                        链接：<a href="">htt://www.baidu.com</a>
+                    </p>
+                    <p>
+                        链接：<a href="">htt://www.baidu.com</a>
+                    </p>
+                    <p>
+                        链接：<a href="">htt://www.baidu.com</a>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 collect-block">
+                    <p><b>jquery</b></p>
+                    <p>
+                        简介：这是一款基于选择器的DOM操作框架，轻量级。
+                    </p>
+                    <p>
+                        链接：<a href="">htt://www.baidu.com</a>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 collect-block">
+                    <p><b>jquery</b></p>
+                    <p>
+                        简介：这是一款基于选择器的DOM操作框架，轻量级。
+                    </p>
+                    <p>
+                        链接：<a href="">htt://www.baidu.com</a>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 collect-block">
+                    <p><b>jquery</b></p>
+                    <p>
+                        简介：这是一款基于选择器的DOM操作框架，轻量级。
+                    </p>
+                    <p>
+                        链接：<a href="">htt://www.baidu.com</a>
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    {% include '../common/footer.html' %}
+    <script type="text/javascript" src="js/require.js" data-main="js/index.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $('.collect-title').on('click',function(event){
+            event = event || window.event;
+            var t= event.currentTarget,$t = $(t),$p = $t.parent();
+            var w = $p.css('height');
+            if(w != '60px'){
+                $p.css('overflow','hidden');
+                $p.animate({
+                    'height' : '60px',
+                },1500);
+            }else{
+                $p.css('overflow','hidden');
+                $p.animate({
+                    'height' : '100%',
+                },1500);
+            }
+
+            
+        });
+    })
+</script>

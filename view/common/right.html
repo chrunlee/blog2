@@ -1,0 +1,73 @@
+<!-- 右侧的分享及其他信息-->
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p class="hel-block">大神都爱分享...</p>    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        </div>
+        <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>    
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 appdes"  style="">
+        <p>描述： {{ app.des }} </p>
+        <p>爱心赞 : 
+            <span class="addLikeBtn" id="{{app.id}}" title="给点个赞吧亲">
+                <i class="fa fa-heart"></i>
+            </span>
+            <span id="likenum">{{ app.likecount }}</span>
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+    //从cookie中读取，然后展示是否喜欢
+    function getCookie(name){
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg)){
+            return unescape(arr[2]);    
+        }else{
+            return null;    
+        }
+    }
+    function setCookie(name,value){
+        var Days = 30;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    }
+    var showLike = function(){
+        var like = getCookie('like') || '';
+        var arr = like.split(',');
+        arr.forEach(function(ele,index){
+            if(null != ele && ele != ''){
+                $('span#'+ele).addClass('haslike');
+            }
+        });
+    };
+    showLike();
+    $('.addLikeBtn:not(.haslike)').on('click',function(event){
+        event = event || window.event;
+        var t = event.currentTarget,$t = $(t),id = $t.attr('id');
+        if($t.attr('class').indexOf('haslike') > -1){}else{
+            $.ajax({
+                url : '/index/addlike',
+                type : 'POST',
+                data : {id : id},
+                success : function(res){
+                    layer.msg('感谢点赞..',{icon :1});
+                    //将该值存入cookie,刷新后还要存在
+                    var like = getCookie('like') || '';
+                    setCookie('like',like+','+id);
+                    $t.addClass('haslike');
+                    $('#likenum').html(res);
+                    $t.off();
+                }
+            });
+        }
+    });
+</script>

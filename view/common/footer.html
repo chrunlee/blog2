@@ -1,0 +1,45 @@
+<footer>
+    <div class="text-center padder-v m-t clearfix">
+        <p><small>Copyright © 2016 . Powered by chrunlee.<img src="/css/img/logo.png" style="width:16px;height:16px;margin-left:10px;margin-top:-5px;" /></small></p>
+        <p><small>如果您有什么建议或者需求，可发信给我,我会考虑并加上的<email>chrunlee@foxmail.com</email></small></p>
+    </div>
+</footer>
+<script type="text/javascript">
+    var suitScreen = function(){
+        var height = window.screen.height;
+        $('footer').css('position','relative').css('bottom','0px');
+        var footerHeight = 60;
+        var cfg = $('footer').offset();
+        if(height - footerHeight > cfg.top){
+            $('footer').css('position','absolute');
+        }else{
+            $('footer').css('position','relative');
+        }
+    };
+    $(function(){
+        suitScreen();
+    });
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?48498d772e388515246617b7630e2944";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>

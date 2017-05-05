@@ -1,0 +1,87 @@
+/**文章样式**/
+html,body{
+    background-color:white !important;
+    color:inherit !important;
+}
+.articlelist{
+    margin:0px;
+    padding:0px;
+    padding-left:40px;
+}
+.articlelist>li{
+    padding:10px 10px 5px 10px;
+    border-bottom:1px dashed #ccc;
+    margin-right:50px;
+}
+@media(max-width:768px){
+    .articlelist{
+        padding-left:0px;    
+    }
+    .articlelist>li{
+        margin-right:0px;
+    }
+}
+
+
+.articlelist>li:last-child{
+    border-bottom:none;
+}
+.info{
+    color:#999;
+    margin-top:20px;
+}
+.time{
+    margin-left: 3px;
+    color: #717171;
+    font-size:12px;
+}
+.time:hover,.item:hover,.readnum:hover,.commentnum:hover{
+    color:#666;
+}
+.title>a{
+    color: #555555;
+    text-decoration: none;
+    font-size:18px;
+    font-weight:bold;
+    line-height:1.5;
+}
+.title>a:hover{
+    color:#333;
+}
+.page{
+    margin-top:50px;
+}
+.rightlist{
+    padding:0px;
+    margin:0px;
+    margin-bottom:30px;
+    margin-top:10px;
+}
+.rightlist>li{
+    padding-left:10px;
+}
+.rightlist>li>a{
+    color:#4094c7;
+    text-decoration:none;
+    font-size:14px;
+    cursor:pointer;
+    line-height:30px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    display:inline-block;
+    width:100%;
+}
+.rightlist>li>a:hover{
+    color:#1B6B9B;
+}
+img{
+    max-width:100%;
+}
+.articlecontent{
+    overflow-x:auto;
+}
+pre{
+    background-color:#272822;
+    white-space:pre-wrap;
+}

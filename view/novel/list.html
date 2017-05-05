@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{novel.name}}目录 - 程序员的百宝箱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="{{novel.name}}目录,程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun">
+    <meta name="description" content="{{novel.name}}目录,程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun">
+    {% include '../common/css.html' %}
+    <link media="all" type="text/css" rel="stylesheet" href="/css/novel.css"  />
+
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="bdsharebuttonbox">
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a href="#" class="bds_more" data-cmd="more"></a>
+                    <a class="bds_count" data-cmd="count"></a>
+                </div>
+                <script>
+                    window._bd_share_config={
+                        "common":{
+                            "bdSnsKey":{},
+                            "bdText":"",
+                            "bdMini":"2",
+                            "bdMiniList":false,
+                            "bdPic":"",
+                            "bdStyle":"0",
+                            "bdSize":"16"
+                        },
+                        "share":{}
+                    };
+                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                </script>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="bookdes">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
+                        <img src="{{novel.imagepath}}" alt="">    
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                        <p style="font-size:16px;font-weight:bold;" class="bookname">{{novel.name}}</p>
+                        <p>{{novel.description}}</p>    
+                    </div>    
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="caption">{{ novel.name }}  - 章节目录</div>
+                <ul class="booklist">
+                    {% for zhang in list %}
+                    <li class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <span><a href="/novel/{{novel.bookno}}/{{zhang.sortnum}}.html">{{ zhang.name }}</a></span></li>
+                    {% endfor %}
+                </ul>
+                <p class="help-block">如有侵权，请发信告之，会尽快删除。</p>
+            </div>
+        </div>
+    </div>
+    {% include '../common/footer.html' %}
+</body>
+</html>

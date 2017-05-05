@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="app">
+<head>
+    <meta charset="utf-8">
+    <title>注册 - 程序员的百宝箱</title>
+    <meta name="keywords" content="程序员的百宝箱,chrunlee,www.chrunleexun.com">
+    <meta name="description" content="程序员的百宝箱,chrunlee,chrunleexun.com">
+    {% include 'common/css.html' %}
+</head>
+<body>
+    {% include 'common/header.html' %}
+    <section class="main padder-v">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 m-t-large">
+                <section class="panel panel-default">
+                    <header class="panel-heading text-center"> 注册 </header>
+                    <form method="POST" id="registerForm"  accept-charset="UTF-8" class="panel-body">                                      
+                        <div class="form-group"> 
+                            <label for="name" class="control-label">用户名</label> 
+                            <input class="form-control" name="name" type="text" id="name">
+                            <p class="help-block" id="namemsg"></p>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="email" class="control-label">E-MAIL</label> 
+                            <input class="form-control" name="email" type="text" autocomplete="off" value="" id="email">
+                            <p class="help-block" id="emailmsg"></p>
+                        </div>
+                        <div class="form-group"> 
+                            <label for="pwd" class="control-label">密码</label> 
+                            <input class="form-control" name="pwd" type="password" autocomplete="off" value="" id="pwd">
+                            <p class="help-block" id="pwdmsg"></p>
+                        </div>
+                        <div class="clearfix"> 
+                            <input class="btn btn-info" type="button" name="submit" value="注册"> 
+                        </div>
+                        <div class="line line-dashed"></div>
+                        <p class="text-muted text-center">已经有账户了？</p>
+                        <a href="/user/login" class="btn btn-default btn-block">登录</a>                    
+                    </form>             
+                </section>
+            </div>
+        </div>
+    </section>
+    {% include 'common/footer.html' %}
+</body>
+</html>
+<script type="text/javascript" src="/js/require.js" data-main="/js/register.js"></script>

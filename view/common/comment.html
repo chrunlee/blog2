@@ -1,0 +1,27 @@
+<!-- 应用评论 -->
+<div class="container" style="width:100%;margin-top:50px;border-top:1px solid #999;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <br />
+            <h4>评论：<input type="text" name="commentname" class="commentName" style="" placeholder="来一个响亮的名字吧" id="commentname" /></h4>
+            <div class="commentDiv">
+                <span class="commentAvatar">
+                    <img src="/avatar/1.jpg" id="avatar" title="点我下试试..." class="avatarPic" alt="">
+                </span>
+                <textarea name="commentcontent" id="commentcontent" placeholder="写点什么吧..." style="height:80px;width:100%;"></textarea>    
+            </div>
+            <div class="submitDiv">
+                <span class="btn btn-default pull-right comment-submit-btn">发表</span>    
+            </div>
+            <span class="commentNum">0条评论</span>
+            <div class="commentlist clearfix">
+                <ul id="commentData"></ul>
+            </div>
+            <div class="page">
+                <ul class="pagination"></ul>
+            </div>
+        </div>    
+    </div>
+</div>
+<script type="text/javascript" src="/js/module/pagination.js"></script>
+<script type="text/javascript" src="/js/comment.js"></script>

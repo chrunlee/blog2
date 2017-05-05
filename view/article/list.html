@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的笔记 - 程序员的百宝箱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun">
+    <meta name="description" content="程序员的百宝箱,chrunlee,www.chrunleexun.com,在线工具百宝箱,在线工具程序员,程序员在线工具,工具箱,李迅,lixun">
+    {% include '../common/css.html' %}
+    <link media="all" type="text/css" rel="stylesheet" href="/css/article.css"  />
+
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <p class="help-block"><a href="/article/list" style="color:inherit;text-decoration:none;" title="点击查看笔记列表">笔记</a> &nbsp;&gt;&nbsp; {{ msg }}</p>
+                <ul class="articlelist">
+                    {% for entity in list %}
+                    <li>
+                        <p class="title"><a href="/article/view/{{ entity.id }}.html" title="{{ entity.title }}">{{entity.title}}</a></p>
+                        <p class="info">
+                            <span class="readnum">阅读 {{ entity.readnum || 0 }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="commentnum">评论 {{ entity.commentnum||0 }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="time">{{ entity.createtime }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="item">分类 : <a href="/article/list?t={{entity.type}}">{{ entity.type }}</a></span>
+                        </p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="page">
+                    <ul class="pagination" data-total="{{ total }}"></ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <input type="text" class="form-control" name="search" id="search" placeholder="请输入关键字">
+                <div class="recommand">
+                    <h4>推荐笔记</h4>
+                    <ul class="rightlist">
+                        {% for entity in readlist %}
+                        <li><a href="/article/view/{{ entity.id }}.html" title="{{ entity.title }}">{{ entity.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="articletype">
+                    <h4>笔记分类</h4>
+                    <ul class="rightlist">
+                        {% for type in typelist %}
+                        <li><a href="/article/list?t={{type.type}}">{{ type.type }}&nbsp;( {{ type.num }} )</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="articletime">
+                    <h4>笔记归档</h4>
+                    <ul class="rightlist">
+                        {% for entity in datelist %}
+                        <li><a href="/article/list?d={{entity.date}}">{{ entity.date }}&nbsp;( {{ entity.num }} )</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include '../common/footer.html' %}
+    <script type="text/javascript" src="/js/module/pagination.js" ></script>
+    <script type="text/javascript">
+    var getSearch = function(searchParam,url){
+        var l = url ? url.split('?')[1] :  location.search.substring(1,location.search.length);
+        var rv = '';
+        if(l && l!=''){
+            var ls = l.split('&');
+            for(var i=0;i<ls.length;i++){
+                var str =ls[i];
+                var strs = str.split('=');
+                if(strs[0] == searchParam){
+                    rv = strs[1];
+                    break;
+                }
+            }
+        }
+        return rv;
+    };
+    $(function(){
+        var page = getSearch('p')|| 1;
+        page = parseInt(page,10);
+        var total = $('.pagination').data('total');
+        pagination.init({
+            count : total,
+            pagesize : 10,
+            page : page,
+            callback : function(p){
+                location.href = '/article/list?p='+p.page;
+            }
+        });
+
+        //绑定检索输入框的回车事件
+        $('input[name="search"]').on('keyup',function(event){
+            event = event || window.event;
+            if(event.keyCode === 13){
+                var searchValue = $('input[name="search"]').val();
+                searchValue = searchValue.trim();
+                if(searchValue.length > 0){
+                    searchValue = encodeURIComponent(searchValue);
+                    window.location.href = '/article/list?q='+searchValue;
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在线生成二维码 - 程序员的百宝箱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="name" itemprop="name" content="在线生成二维码 - 程序员的百宝箱" />
+    <meta name="keywords" itemprop="description" content="程序员的百宝箱,chrunlee,www.chrunleexun.com,在线生成二维码,二维码在线制作,自定义二维码,李迅"/>
+    {% include '../common/css.html' %}
+    <style type="text/css">
+    .btn{
+        word-spacing: 32px;
+    }
+    </style>
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <input type="hidden" id="appid" value="7">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
+                        <label for="" class="iptlabel">文本：</label>        
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" class="ipt" name="text" placeholder="在这里输入要生成的文本内容.." />        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
+                        <label for="" class="iptlabel">大小：</label>        
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <input type="number" max="15" min="1" name="size" value="12"  class="ipt" placeholder="二维码的大小...">      
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
+                        <label for="" class="iptlabel">边框：</label>        
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <select name="margin" id="" class="ipt">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>      
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
+                        <label for="" class="iptlabel">格式：</label>        
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <select name="type" id="" class="ipt">
+                            <option value="png">png</option>
+                        </select>        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right"></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
+                        <span class="btn btn-primary" id="createBtn">生成二维码</span>
+                        <span class="btn btn-primary" id="download">下载二维码</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="border:1px solid lightblue;max-width:100%;min-width:300px;min-height:300px;margin:20px auto;">
+                        <img src="" id="erweima" alt=""  style="margin:auto;display:block;">
+                    </div>
+                </div>
+                {% include '../common/comment.html' %}
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                {% include '../common/right.html' %}
+            </div>
+        </div>
+    </div>
+    {% include '../common/footer.html' %}
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $('input[name="text"]').val(location.href);
+        $('#createBtn').on('click',function(){
+            var text = $('input[name="text"]').val();
+            if(text.trim() == ''){
+                layer.msg('你不得填点啥内容么...');
+                $('input[name="text"]').focus();
+                return;
+            }
+            text = encodeURIComponent(text);
+            var size = $('input[name="size"]').val();
+            var margin = $('select[name="margin"]').val();
+            var type = $('select[name="type"]').val();
+
+            var url = '/qr/create?t='+text+'&s='+size+'&m='+margin+'&p='+type;
+            $('#erweima').attr('src',url);
+        });
+        $('#download').on('click',function(){
+            var text = $('input[name="text"]').val();
+            if(text.trim() == ''){
+                layer.msg('你不得填点啥内容么...');
+                $('input[name="text"]').focus();
+                return;
+            }
+            text = encodeURIComponent(text);
+            var size = $('input[name="size"]').val();
+            var margin = $('select[name="margin"]').val();
+            var type = $('select[name="type"]').val();
+
+            var url = '/qr/download?t='+text+'&s='+size+'&m='+margin+'&p='+type;
+            window.open(url);
+        });
+    });
+</script>

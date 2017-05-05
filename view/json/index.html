@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 格式化 - 程序员的百宝箱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="程序员的百宝箱,chrunlee,www.chrunleexun.com">
+    {% include '../common/css.html' %}
+    <style type="text/css">
+    .btn{
+        word-spacing: 12px;
+        margin-right:30px;
+    }
+    </style>
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <input type="hidden" name="appid" id="appid" value="2" />
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <textarea name="input" class="form-control" style="height:500px;" placeholder="来点JSON字符串试试..." spellcheck="false"></textarea>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <textarea name="output" class="form-control" placeholder="等待转化jieguo...." style="height:500px;" spellcheck="false"></textarea>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <br />
+                <span class="btn btn-warning" name="beautify">格 式 化</span>
+                <span class="btn btn-warning" name="">校 验</span>
+                <span class="btn btn-default" name="select">选 中</span>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {% include '../common/comment.html' %}
+            </div>
+        </div>
+    </div>
+    
+    {% include '../common/footer.html' %}
+</body>
+</html>
+<script type="text/javascript" src="/js/require.js" data-main="/js/json.js"></script>

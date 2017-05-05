@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面走丢了 - 程序员的百宝箱</title>
+    <meta name="keywords" content="程序员的百宝箱,chrunlee,www.chrunleexun.com">
+    {% include '../common/css.html' %}
+    <style type="text/css">
+    .infoline{
+        padding:5px 20px;
+        background-color:#ccc;
+
+    }
+    </style>
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h3>{{title}}</h3><br />
+                <h5>{{content}}</h5>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                {{message}}
+            </div>
+        </div>
+    </div>
+    {% include '../common/footer.html' %}
+</body>
+</html>

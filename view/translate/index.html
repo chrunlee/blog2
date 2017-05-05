@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中英互译 - 程序员的百宝箱</title>
+    <meta name="keywords" content="程序员的百宝箱,chrunlee,www.chrunleexun.com">
+    {% include '../common/css.html' %}
+    <style type="text/css">
+    .btn{
+        word-spacing: 12px;
+        margin-right:30px;
+    }
+    </style>
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <textarea name="input" class="form-control" style="height:500px;" placeholder="来点ying文试试..." spellcheck="false"></textarea>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <textarea name="output" class="form-control" placeholder="等待转化jieguo...." style="height:500px;" spellcheck="false"></textarea>
+            </div>
+        </div>
+    </div>
+    {% include '../common/footer.html' %}
+</body>
+</html>
+<script type="text/javascript" src="/js/require.js" data-main="/js/translate.js"></script>

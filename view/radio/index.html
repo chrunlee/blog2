@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FM - 程序员的百宝箱</title>
+	{% include '../common/css.html' %}
+	<style type="text/css">
+		html,body{
+			width:100%;
+			overflow:hidden;
+			overflow-y:auto;
+		}
+		.containerr{
+			width:850px;
+			left:50%;
+			position:absolute;
+			margin-left:-425px;
+			border:1px solid red;
+			border:1px solid #eee;
+			padding:20px;
+			margin-top:200px;
+		}
+		.left{
+			width:600px;
+			float:left;
+		}
+		.right{
+			float:left;
+			width:200px;
+			height:200px;
+
+		}
+		.title{
+			color:#333;
+			font-weight:400;
+			font-size:25px;
+		}
+		.title:hover{
+			text-decoration:underline;
+		}
+		#pic{
+			width:200px;
+			height:200px;
+			border:1px solid #f5f5f5;
+		}
+		.nexticon{
+			color:#666;
+			font-size:12px;
+			text-decoration:none;
+		}
+		.pull-right{
+			float:right;
+		}
+		.btns{
+			clear:both;
+			padding:5px 0px;
+		}
+		.nexticon:hover{
+			color:#333;
+			text-decoration:none;
+		}
+		.author,.time{
+			color:#666;
+			font-size:12px;
+		}
+		.author:hover,.time:hover{
+			color:#333;
+		}
+		h3{
+			margin: 0px;
+		    /* border: 1px solid red; */
+		    color: #333;
+		    font-size: 20px;
+		    font-weight: normal;
+		    font-family: "微软雅黑";
+		}
+		p.line{
+			height:0px;
+			border:2px solid #ccc;
+			position:relative;
+		}
+		span.now{
+			display:inline-block;
+			height:0px;
+			position:absolute;
+			top:0px;
+			top:-2px;
+			margin:0px;
+			left:-1px;
+			border:2px solid green;
+		}
+		.search{
+			position:absolute;
+			left:50%;
+			margin-left:-400px;
+			width:800px;
+			top:100px;
+		}
+		.search-input{
+			height:40px;
+			width:800px;
+			border:1px solid green;
+			outline:none;
+			padding-left:10px;
+		}
+		.show{
+			background-color:#f5f5f5;
+			position:absolute;
+			z-index:1;
+			width:800px;
+			max-height:400px;
+			overflow-y:auto;
+		}
+		.show p{
+			padding:5px 10px;
+		}
+		.show p:hover{
+			background-color:#A9FAB6;
+			cursor:pointer;
+		}
+		.channel a,.channel a:visited,.channel a:active,.channel a:focus{
+			color:#666;
+			text-decoration:none;
+		}
+		.channel a:hover{
+			color:#333;
+		}
+		.mylove{
+			position:absolute;
+			top:480px;
+			left:50%;
+			margin-left:-425px;
+			max-height:400px;
+			overflow-y:auto;
+			background-color:#f5f5f5;
+			width:850px;
+		}
+		.mylove p{
+			padding:5px;
+		}
+		.mylove p:nth-child(odd){
+			background-color:#eee;
+		}
+		.fa-headphones{
+			margin-left:10px;
+			cursor:pointer;
+			margin-right:10px;
+			color:green;
+		}
+	</style>
+</head>
+<body>
+    {% include '../common/header.html' %}
+	<h5 style="padding-left:16px;margin-top:10px;"><a href="/index" style="color:inherit;text-decoration:none;float:left;margin-right:15px;line-height:36px;" title="去往首页的途径...">首页</a>
+		<span class="bdsharebuttonbox" title="来吧，分享吧 ">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+            <a class="bds_count" data-cmd="count"></a>
+        </span>
+        <script>
+        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>   
+	</h5>
+	    <div class="search">
+    	<input type="text" class="search-input" placeholder="查查你想要的哥...">
+		<div class="show">
+			
+		</div>
+    </div>
+	<div class="containerr">
+		<div class="left">
+			<p class="title"></p>		
+			<p class="author"></p>
+			<p class="time"></p>
+			<p class="line"><span class="now"></span></p>
+			<audio src="" id="fm" autoplay="true"></audio>		
+			<p class="btns">
+				<a href="javascript:;" onclick="stop()" class="nexticon" id="stop" title="点击暂停播放">暂停</a>
+				<a href="javascript:;" onclick="next()" class="nexticon" title="点击播放下一首歌曲">下一个</a>
+			</p>
+			<p class="collect">
+				<i class="fa fa-heart" stitle="" sauthor="" sid="" title="点击收藏这个歌曲/或者取消她" style="font-size:14px;" id="heart"></i>
+			</p>
+			<p class="channel">
+				<a href="javascript:;" onclick="playMyLove()">播放我的最爱</a> | 
+				<a href="javascript:;" onclick="playOthers()">继续播放其他</a> | 
+				<a href="javascript:;" onclick="lookMyLove()" id="look">查看我的收藏</a>
+				<a href="" id="download" target="_blank">点击下载</a>
+			</p>
+		</div>
+		<div class="right">
+			<img src="" alt="" id="pic">
+		</div>
+	</div>
+	<div class="mylove"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var channel = 0;//0 代表随机音乐，1代表我的最爱频道
+	var ms = '||';
+	var is = '__';
+	var audio = document.getElementById('fm');
+	var next = function(){
+		audio.currentTime = 0;
+		audio.timeStamp = 0;
+		$('#stop').html('暂停');
+		loadone();
+	};
+	var stop = function(){
+		if($('#stop').html().indexOf('暂停') > -1){
+			audio.pause();
+			$('#stop').html('继续');
+		}else{
+			audio.play();
+			$('#stop').html('暂停');
+		}
+	};
+	audio.onended = function(){
+		loadone();
+	};
+	audio.ontimeupdate = function(d){
+		var tt = d.target.currentTime;
+		tt = (tt).toFixed(0);
+		$('.time').html(tt+'s');
+		$('span.now').css('width',tt);
+	};
+	var loadInfo = function(obj){
+		var url = obj.b_url;
+		var sid = obj.id;
+		var title = obj.title,
+		author = obj.author;
+		var len = obj.len;
+		len = parseInt(len,10);
+		$('#pic').attr('src',obj.b_pic);
+		$('audio').attr('src',url);
+		$('.title').html(title);
+		$('.author').html(author);
+		$('p.line').css('width',len+'px');
+		$('#heart').attr('sid',sid);
+		$('#heart').attr('stitle',title);
+		$('#heart').attr('sauthor',author);
+		$('#download').attr('href',url);
+		checkHeart(sid);
+	};
+	var lookMyLove = function(){
+		var ls = window.localStorage;
+		var t = $('#look').html();
+		if(t.indexOf('关闭') > -1){//关闭
+			$('.mylove').animate({
+				height : '0px'
+			},1000,function(){
+				$('.mylove').html('');
+				$('#look').html('查看我的收藏');
+			});
+			return;
+		}
+		if(ls){
+			var d = ls.getItem('redheart') || '';
+			if(d == ''){
+				layer.msg('暂无收藏哦...',{icon : 2});
+			}else{
+				var msd = d.split(ms);
+				$('.mylove').html('');
+				$('.mylove').css('height','0px');
+				msd.forEach(function(ele){
+					if(ele != null && ele != ''){
+						var info = ele.split(is);
+						var id = info[0],
+							title = info[1],
+							author = info[2];
+						$('.mylove').append('<p sid="'+id+'"><span>'+title+'</span><i class="fa fa-headphones" sid="'+id+'" title="点击播放"></i><span class="pull-right">'+author+'</span></p>');
+					}
+				});
+				$('.mylove').animate({
+					height : '400px'
+				},1000);
+				$('#look').html('关闭我的收藏');
+			}
+		}
+	};
+	var playMyLove= function(){
+		channel = 1;
+		loadone();
+	};
+	var playOthers = function(){
+		channel = 0;
+		loadone();
+	};
+	var checkHeart = function(id){
+		var ls = window.localStorage;
+		if(ls){
+			var d = ls.getItem('redheart')||'';
+			var dd = d.split(ms);
+			var f = checkArray(dd,id);
+			if(f.flag){
+				$('.fa-heart').removeClass('active').addClass('active');
+			}else{
+				$('.fa-heart').removeClass('active');
+			}
+		}
+	};
+	var checkArray = function(arr,id){
+		var flag = {
+			flag : false,
+			index : 0
+		};
+		for(var i=0;i<arr.length;i++){
+			var ele = arr[i];
+			var eleid = ele.split(is)[0];
+			if(eleid == id){
+				flag.flag = true;
+				flag.index = i;
+				break;
+			}
+		}
+		return flag;
+	};
+	var addHeart = function(id,title,author){
+		var ls = window.localStorage;
+		if(ls){
+			var d = ls.getItem('redheart')||'';
+			var dd = d.split(ms);
+			dd.push(id+is+title+is+author);
+			ls.setItem('redheart',dd.join(ms));
+		}
+	};
+	var removeHeart = function(id){
+		var ls = window.localStorage;
+		if(ls){
+			var d = ls.getItem('redheart')||'';
+			var dd = d.split(ms);
+			var f = checkArray(dd,id);
+			if(f.flag){
+				dd.splice(f.index,1);
+				ls.setItem('redheart',dd.join(ms));
+			}
+		}
+	};
+	var loadone = function(){
+		if(channel == 1){
+			//从内存中获得
+			var ls = window.localStorage;
+			var d = ls.getItem('redheart')||'';
+			if(d == ''){
+				layer.msg('您还没收藏过一首歌..先收藏几个在说吧',{icon : 2});
+				return;
+			}else{
+				var dd = d.split(ms);
+				var i = Math.floor(Math.random()*dd.length);
+				var info = dd[i];
+				var id = info.split(is)[0];
+				play(id);
+			}
+		}else{
+			$.ajax({
+				url : '/fm/random',
+				type : 'POST',
+				data : {},
+				success : function(res){
+					var obj = eval('('+res+')');
+					loadInfo(obj);
+				}
+			});
+		}
+	};
+	$(function(){
+		loadone();
+		$('.search-input').on('keyup',function(){
+			var v = $('.search-input').val();
+			search(v.trim());
+		});
+		$('.show').on('click','p',function(event){
+			event = event || window.event;
+			var t = event.currentTarget,$t = $(t);
+			var id = $t.attr('id');
+			play(id);
+			//隐藏show,清空value
+			$('.search-input').val('');
+			$('.show').html('');
+		});
+		$('body:not(.show)').on('click',function(){
+			$('.show').html('');
+		});
+		$('body .search-input').on('click',function(){
+			var v= $('.search-input').val();
+			v = v.trim();
+			search(v);
+		});
+		$('.fa-heart').on('click',function(){
+			var sid = $('.fa-heart').attr('sid');
+			var stitle = $('.fa-heart').attr('stitle');
+			var sauthor = $('.fa-heart').attr('sauthor');
+			if($('.fa-heart').attr('class').indexOf('active') > -1){ //已经有了，取消收藏
+				removeHeart(sid,stitle,sauthor);
+				$('.fa-heart').removeClass('active');
+			}else{//增加收藏
+				addHeart(sid,stitle,sauthor);
+				$('.fa-heart').removeClass('active').addClass('active');
+			}
+		});
+		$('.mylove').on('click','.fa-headphones',function(event){
+			event = event || window.event;
+			var t= event.currentTarget,$t = $(t),sid = $t.attr('sid');
+			play(sid);
+		});
+	});
+	var play = function(id){
+		$.ajax({
+			url : '/fm/get',
+			type : 'POST',
+			data : {id : id},
+			success : function(res){
+				var resobj = eval('('+res+')');
+				loadInfo(resobj);
+			}
+		});
+	};
+	var searchAjax = null;
+	var search = function(v){
+		if(v != ''){
+			if(searchAjax){
+				searchAjax.abort();
+			}
+			searchAjax = $.ajax({
+				url : '/fm/search',
+				type : 'POST',
+				data : {v : v},
+				success : function(res){
+					var resobj = eval('('+res+')');
+					$('.show').html('');
+					if(resobj.length > 0){
+						var str = '';
+						resobj.forEach(function(ele){
+							var id = ele.id,title = ele.title,author = ele.author;
+							str += '<p id="'+id+'" title="点击播放"><span>'+title+'</span><span class="pull-right">'+author+'</span></p>'
+						});
+						$('.show').html(str);
+					}else{
+						$('.show').html('系统暂未收录这个歌...');
+					}
+				}
+			});
+		}
+	};
+
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?48498d772e388515246617b7630e2944";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>

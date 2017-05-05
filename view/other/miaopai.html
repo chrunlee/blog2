@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>常用工具类</title>
+    <meta name="keywords" content="常用工具类">
+    {% include '../common/css.html' %}
+</head>
+<body>
+    {% include '../common/header.html' %}
+    <div class="container">
+        <div class="row">
+            <input type="text" name="miaopai" class="form-control" placeholder="请输入一个完整的秒拍链接，不对不负责.." />
+            <br />
+            <input type="button" name="btn" value="点击去获取视频吧" class="btn btn-primary" />
+            <br />
+            <p class="help-block">以下是图例，请照着这个链接来...谢谢，其他不顶用！！！不顶用</p>
+            <img src="/img/miaopai.png" style="width:100%;"/>
+        </div>
+    </div>
+
+    {% include '../common/footer.html' %}
+    <script type="text/javascript">
+    $(function(){
+        $('input[name="btn"]').click(function(){
+            var url = $('input[name="miaopai"]').val();
+            if(url.trim() == ''){
+                layer.msg('填个完整的路径先',{icon : 1});
+            }else{
+                layer.load();
+                $.ajax({
+                    type : 'POST',
+                    url : '/other/miaopai/post',
+                    data : {url : url},
+                    success : function(res){
+                        layer.closeAll('loading');
+                        window.open(res);
+                    },
+                    error : function(){
+                        layer.closeAll('loading');
+                        layer.msg('出了点问题..一会刷新下再试试要不',{icon :1});
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
