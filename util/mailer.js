@@ -9,18 +9,18 @@ var nodemailer = require('nodemailer');
 var log = require('../util/logUtil');
 
 // create reusable transporter object using the default SMTP transport
-// var transporter = nodemailer.createTransport({
-//     pool : true,
-//     host : 'smtp.qq.com',
-//     port : 465,
-//     secure : true,
-//     auth : {
-//         user : 'chrunlee@foxmail.com',
-//         pass : 'lixun53542306~~'
-//     }
-// });
+var transporter = nodemailer.createTransport({
+    pool : true,
+    host : 'smtp.qq.com',
+    port : 465,
+    secure : true,
+    auth : {
+        user : 'chrunlee@foxmail.com',
+        pass : 'jsqtbymzzyzhbdad'
+    }
+});
 
-var transporter = nodemailer.createTransport('smtps://chrunlee@foxmail.com:rhllpmgzpdnnbeae@smtp.qq.com');
+// var transporter = nodemailer.createTransport('smtps://chrunlee@foxmail.com:jsqtbymzzyzhbdad@smtp.qq.com');
 
 // setup e-mail data with unicode symbols
 var mailOptions = {
