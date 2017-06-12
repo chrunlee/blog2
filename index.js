@@ -43,6 +43,6 @@ app.use(function(err, req, res, next) {
   // });
 });
 
-app.listen(80,function(){
-    console.log('port : 80');
+app.listen(5200,function(){
+    console.log('port : 5200');
 });
