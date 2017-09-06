@@ -106,7 +106,7 @@ router.post('/register',function(req,res,next){
                     req.session.validate = false;
                     //发送邮件
                     // var content = '非常感谢您注册“程序员的百宝箱”网站，以下为验证邮箱的链接：<a href="http://localhost:3333/user/valid?id='+ id+'">邮箱校验</a>';
-                    var link = 'http://www.chrunleexun.com/user/valid?id='+id;
+                    var link = 'http://www.gcoder.win/user/valid?id='+id;
                     var fs = require('fs');
                     var content = fs.readFileSync('./util/mailTemplate.html');
                     content = content.toString();

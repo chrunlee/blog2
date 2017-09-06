@@ -59,4 +59,33 @@ router.post('/saveMsg',function(req,res){
     
 });
 
+
+router.get('/huangjin',function(req,res){
+
+    //1.爬取网站美元汇率
+    //2.进行计算
+    //3.展示结果
+
+    var url = 'http://hq.sinajs.cn/rn=1499736015005list=fx_susdcny';
+    var superagent = require('superagent');
+    superagent.get(url).set({
+        'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Encoding':'gzip, deflate, sdch',
+        'Accept-Language':'zh-CN,zh;q=0.8',
+        'Cache-Control':'no-cache',
+        'Connection':'keep-alive',
+        'Host':'hq.sinajs.cn',
+        'Pragma':'no-cache',
+        'Upgrade-Insecure-Requests':'1',
+        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
+    }).end(function(err,restxt){
+        if(err)console.log(err);
+        var txt = restxt.text;
+        console.log(txt);
+        res.render('other/huangjin',{
+            meiyuan : '1'
+        });
+    });
+});
+
 module.exports = router;

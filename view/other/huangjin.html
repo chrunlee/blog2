@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>黄金价格换算</title>
+	<style type="text/css">
+		
+		input{
+			height:30px;
+			line-height:30px;
+			min-width:200px;
+		}
+		.c{
+			line-height:2em;
+			text-align:right;
+			width:500px;
+		}
+	</style>
+</head>
+<body>
+	<h1>当前美元价格</h1>
+	<h3 style="color:green">{{ meiyuan }}</h3>
+	<div class="c">
+		美元汇率: <input type="text" id="a" value=""><br /><br />
+		一盎司等于多少克 : <input type="text" id="b" value="31.1035"><br /><br />
+		一盎司美元价格: <input type="text" id="c" value="1200">美元<br /><br />
+		计算人名币价格<button onclick="calc1()">计算</button><br /><br />
+		价格: <input type="text" id="d" value="">元/克	
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	
+function calc1 () {
+	var a = document.getElementById('a'),
+		b = document.getElementById('b'),
+		c = document.getElementById('c'),
+		d = document.getElementById('d');
+	var v = parseFloat(a.value)* parseFloat(c.value) / parseFloat(b.value);
+	d.value = v;
+}
+</script>
