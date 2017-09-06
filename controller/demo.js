@@ -11,6 +11,7 @@ router.get('/mail',function(req,res){
 	//必须得登录
 	var title = req.query.title,content = req.query.content,to = req.query.to;
 	var session = req.session;
+	console.log(session);
 	if(null != session && null != session.email && '' != session.email){
 		var from = session.email;
 		console.log(from);
